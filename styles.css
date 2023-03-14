@@ -1,0 +1,154 @@
+:root {
+    --grey-light: hsl(0, 0%, 25%);
+    --bg-color: #212121;
+    --bg-darker-color: #181818;
+    --font: #aaaaaa;
+    --font-dark: #181818;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-color);
+    font-family: monospace;
+    font-size: 16px;
+}
+
+.board {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+}
+
+.board .board-body,
+.board .board-svg,
+.board .board-menu {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+}
+
+.board .board-menu {
+    top: 101vh;
+    background-color: var(--bg-darker-color);
+    transition: top .3s cubic-bezier(0.39, 0.58, 0.57, 1);
+    border: 3px solid var(--grey-light);
+    border-radius: 0.23rem;
+    height: 90vh;
+    width: 90vw;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.board .board-menu.show {
+    top: 10vh;
+}
+
+.board .component {
+    position: absolute;
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background-color: var(--bg-darker-color);
+    color: var(--font);
+    border: thin solid var(--grey-light);
+    border-radius: .23rem;
+    user-select: none;
+    font-family: monospace;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.board .board-menu .component {
+    position: relative;
+    margin: 1rem;
+}
+.board .board-menu .component:active {
+    filter: brightness(.65) invert();
+}
+
+.board .component .component-conn-wrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    transform: translateX(-100%);
+    /* background: red;
+    width: 2px; */
+}
+
+.board .component .component-conn-wrap.outputs {
+    left: auto;
+    right: 0;
+    transform: translateX(100%);
+}
+
+.board .component .conn-pin {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    color: red;
+    border-radius: 50%;
+    background: currentColor;
+    margin: 0 -1px 0 -1px;
+    filter: brightness(0.5);
+}
+
+.board .component .conn-pin:hover {
+    filter: brightness(1);
+}
+
+.board .board-nodes {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    overflow: auto;
+}
+
+.board .board-nodes.board-outputs {
+    left: auto;
+    right: 0;
+}
+
+.board .board-nodes .board-node {
+    margin: 0.35rem;
+    user-select: none;
+}
+
+.board .board-nodes .board-node .conn-pin,
+.board .board-nodes .board-node button {
+    border-radius: 50%;
+    text-align: center;
+    padding: 0.1rem 0.485rem;
+    color: var(--font-dark);
+    font-weight: 600;
+    background-color: hsl(87.77deg 50.21% 52.75%);
+    font-size: 1.3rem;
+    border: 1px solid currentColor;
+}
+
+.board .board-nodes .board-node button:active {
+    filter: invert() brightness(0.65);
+}
+
+.board .board-nodes .board-node .conn-pin {
+    font-size: 1rem;
+    padding: 0.2rem 0rem;
+}
